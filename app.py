@@ -1,9 +1,10 @@
+import keras 
+model=keras.models.load_model('Final_Resnet50_Best_model.keras')
 import numpy as np
 import pandas as pd
-import streamlit as st
+import gradio as gr
 from PIL import Image
 from keras.preprocessing.image import img_to_array
-from io import StringIO
 
 class EmotionPredictor:
     def __init__(self, model, df):
@@ -31,12 +32,14 @@ class EmotionPredictor:
         elif emotion == "Neutral":
             results = self.df[self.df['Emotion'].isin(['Energetic', 'Happy', 'Sad', 'Happily In Love'])].sample(5, replace=False)
 
-        formatted_result_str = f"Predicted Emotion: {emotion}\n\n"
+        formatted_result_str = f"Predicted Emotion: {emotion}"
         formatted_result_str += "".join(
-          f"**Title:** {row['Song Title']}\n"
-          f"**Artist:** {row['Artist']}\n"
-          f"**Album:** {row['Album']}\n"
-          f"**Release Date:** {row['Release Date']}\n\n"
+          f""
+          f"Title: {row['Song Title']}"
+          f"Artist: {row['Artist']}"
+          f"Album: {row['Album']}"
+          f"Release Date: {row['Release Date']}"
+          f""
           for _, row in results.iterrows()
         )
 
@@ -61,23 +64,16 @@ class EmotionPredictor:
         }
         return emotion_dict.get(index, default_emotion)
 
-# Load your model and data
-df = pd.read_csv('songs_new.csv')  # Update the path as necessary
-model = ...  # Load your trained model here
+df = pd.read_csv('songs_new.csv')
+model = model
 
 predictor = EmotionPredictor(model, df)
 
-# Streamlit app
-st.title("Moodify")
-st.write("Upload an image to predict the emotion and get song recommendations based on the emotion detected.")
+interface = gr.Interface(
+    fn=predictor.predict_emotion,
+    inputs=gr.Image(type='pil', label="Upload an image"),
+    outputs=gr.Markdown(label="Recommended Songs"),
+    title="Moodify",
+)
 
-uploaded_image = st.file_uploader("Choose an image...", type=["jpg", "png", "jpeg"])
-
-if uploaded_image is not None:
-    image = Image.open(uploaded_image)
-    st.image(image, caption='Uploaded Image.', use_column_width=True)
-    st.write("")
-    st.write("Classifying...")
-    
-    result = predictor.predict_emotion(image)
-    st.write(result)
+interface.launch(share=True)
