@@ -17,13 +17,15 @@ Try the live demo on Hugging Face Spaces: [Moodify Demo][(https://huggingface.co
 - **VGG16 and ResNet50**: Pre-trained models fine-tuned for the task of emotion recognition.
 - **Hugging Face Spaces**: Used to deploy the web application for public access.
 
-## Project Structure
-- `notebooks/`: Contains Jupyter notebooks used for model development, training, and testing.
-- `models/`: Pre-trained models used for emotion detection.
-- `app.py`: The Gradio-powered web application script for deploying the model.
-- `data/`: Includes the songs dataset and necessary resources for the recommendation system.
-
 ## How It Works
 1. **Emotion Detection**: A user uploads an image, and the model classifies the facial expression into one of the predefined emotion categories (e.g., happy, sad, angry).
 2. **Song Recommendation**: Based on the detected emotion, the system recommends a song that aligns with the user's mood.
 3. **Interactive UI**: Users interact with the model through a web interface that allows them to upload images and receive song recommendations.
+
+## Dataset
+- The **FER-2013** dataset is used for emotion classification. It consists of 35,000 grayscale images of facial expressions categorized into seven emotions: anger, disgust, fear, happiness, sadness, surprise, and neutral.
+- The **songs dataset** is a custom-curated list of songs associated with different emotions, used to make recommendations based on the detected emotions.
+
+## Model Performance
+- **Accuracy**: 66% on the FER-2013 dataset.
+- **Optimization**: Achieved through data augmentation, class weighting, and fine-tuning of the VGG16 and ResNet50 models.   
