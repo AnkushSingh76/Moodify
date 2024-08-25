@@ -24,6 +24,7 @@ Try the live demo on Hugging Face Spaces: [Moodify Demo][(https://huggingface.co
 
 ## Dataset
 - The **FER-2013** dataset is used for emotion classification. It consists of 35,000 grayscale images of facial expressions categorized into seven emotions: anger, disgust, fear, happiness, sadness, surprise, and neutral.
+- Dataset: (https://www.kaggle.com/datasets/msambare/fer2013)
 - The **songs dataset** is a custom-curated list of songs associated with different emotions, used to make recommendations based on the detected emotions.
 
 ## Model Performance
