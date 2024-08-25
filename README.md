@@ -9,7 +9,7 @@
 - **Accurate Performance**: Achieves an accuracy of 66% on emotion detection using the FER-2013 dataset, optimized through data augmentation and model fine-tuning.
 
 ## Demo
-Try the live demo on Hugging Face Spaces: [Moodify Demo](https://huggingface.co/spaces/ankush76/Moodify_Beta1/tree/main)
+Try the live demo on Hugging Face Spaces: [Moodify Demo][(https://huggingface.co/spaces/ankush76/Moodify_Beta1/tree/main)](https://huggingface.co/spaces/ankush76/Moodify_Beta1)
 
 ## Tech Stack
 - **TensorFlow**: Used for building and training the CNN models for emotion detection.
